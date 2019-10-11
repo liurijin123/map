@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>山西旅游地图</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/ol/ol.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../main/css/slidereveal.css">
+    <link rel="stylesheet" type="text/css" href="../main/css/map.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/ol/ol.js"></script>
+    <script type="text/javascript" src="../js/jquery.slidereveal.min.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+
+</head>
+<body>
+<!--弹窗-->
+<div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+</div>
+<!--地图-->
+<div id="map" style="width: 100%;height: 935px"></div>
+<!--侧滑展开窗口-->
+<div id="menu-bar">
+    <div class="handle">
+        <span class="arr_l"></span>
+    </div>
+
+    <div class="row" style="position:relative;left:15px;">
+        <!-- 搜索框  -->
+        <div class="col-md-12" style="width: 400px;height: 62px;background-color: #498dff">
+            <div class="input-group input-group-lg" style="top: 8px">
+                <input id="search-input"type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button id="search" class="btn btn-default" type="button">搜索</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-12" style=" overflow:scroll; width:400px; height:873px;">
+            <ul id="point-list" class="media-list" style="width:380px;position:relative;left:-12px;">
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+</div>
+
+</body>
+<script type="text/javascript" src="../main/js/map.js"></script>
+<script type="text/javascript" src="../main/js/slidereveal.js"></script>
+<script type="text/javascript" src="../main/js/popup.js"></script>
+
+<script>
+
+</script>
+
+</html>

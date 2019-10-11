@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>山西旅游地图</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/ol/ol.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../main/css/slidereveal.css">
+    <link rel="stylesheet" type="text/css" href="../main/css/map.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/ol/ol.js"></script>
+    <script type="text/javascript" src="../js/jquery.slidereveal.min.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script src="../js/echarts/echarts.min.js"></script>
+    <script>
+        function getChart(name){
+            var html =
+                "    <div class=\"modal-dialog modal-lg\" role=\"document\">\n" +
+                "        <div class=\"modal-content\">\n" +
+                "            <div class=\"modal-header\">\n" +
+                "<h1>题目</h1>"+
+                "            </div>\n" +
+                "            <div class=\"modal-body\">\n" +
+                 "<p>ompleted initialization in 4 ms</p>"+
+                "            </div>\n" +
+                "            <div class=\"modal-footer\">\n" +
+                "                <div id= 'main' style=\"width: 900px;height:700px;\" >" +
+                "                </div>"
+                "            </div>\n" +
+                "        </div>\n" +
+                "    </div>\n";
+            document.getElementById("myModal").innerHTML = html;
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            $.ajax({
+                url: "/option/" + name,
+                type: "GET",
+                dataType: 'JSON',
+                success: function (option) {
+                    // option = {
+                    //     title:{
+                    //         text: "题目"
+                    //     },
+                    //     legend: {},
+                    //     tooltip: {},
+                    //     dataset: {
+                    //         source: data
+                    //     },
+                    //     xAxis: {type: 'category'},
+                    //     yAxis: {},
+                    //     // Declare several bar series, each will be mapped
+                    //     // to a column of dataset.source by default.
+                    //     series: [
+                    //         {type: 'bar'},
+                    //         {type: 'bar'},
+                    //         {type: 'bar'},
+                    //         {type: 'bar'},
+                    //     ]
+                    // };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                }
+            });
+            $('#myModal').modal('show');
+        }
+
+    </script>
+</head>
+<body>
+
+<!--弹窗-->
+<div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+</div>
+<!--地图-->
+<div id="map" style="width: 100%;height: 935px"></div>
+<!--侧滑展开窗口-->
+<div id="menu-bar">
+    <div class="handle">
+        <span class="arr_l"></span>
+    </div>
+
+    <div class="row" style="position:relative;left:15px;">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active">
+                <a href="#list" data-toggle="tab">
+                    景点列表
+                </a>
+            </li>
+            <li>
+                <a href="#data" data-toggle="tab">
+                    旅游数据
+                </a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="list">
+                <!-- 搜索框  -->
+                <div class="col-md-12" style="width: 400px;height: 62px;background-color: #498dff">
+                    <div class="input-group input-group-lg" style="top: 8px">
+                        <input id="search-input"type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                    <button id="search" class="btn btn-default" type="button">搜索</button>
+                </span>
+                    </div>
+                </div>
+                <div class="col-md-12" style=" overflow:scroll; width:400px; height:873px;">
+                    <ul id="point-list" class="media-list" style="width:380px;position:relative;left:-12px;">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="data">
+                <div class="list-group">
+                    <a href="javascript:getChart('bar')" class="list-group-item active">
+                        <h4 class="list-group-item-heading">XXXX统计图</h4>
+                        <p class="list-group-item-text">云冈石窟位于中国北部山西省大同市西郊17公里处的武周山南麓，石窟依山开凿，东西绵延1公里。存有主要洞窟45个，大小窟龛252个，石雕造像51000余躯，为中国规模最大的古代石窟群之一，与敦煌莫高窟、洛阳龙门石窟和天水麦积山石窟并称为中国四大石窟艺术宝库。</p>
+                    </a>
+                    <a href="javascript:getChart('map')" class="list-group-item ">
+                        <h4 class="list-group-item-heading">XXXX统计图</h4>
+                        <p class="list-group-item-text">云冈石窟位于中国北部山西省大同市西郊17公里处的武周山南麓，石窟依山开凿，东西绵延1公里。存有主要洞窟45个，大小窟龛252个，石雕造像51000余躯，为中国规模最大的古代石窟群之一，与敦煌莫高窟、洛阳龙门石窟和天水麦积山石窟并称为中国四大石窟艺术宝库。</p>
+                    </a>
+                    <a href="javascript:getChart('line')" class="list-group-item ">
+                        <h4 class="list-group-item-heading">XXXX统计图</h4>
+                        <p class="list-group-item-text">云冈石窟位于中国北部山西省大同市西郊17公里处的武周山南麓，石窟依山开凿，东西绵延1公里。存有主要洞窟45个，大小窟龛252个，石雕造像51000余躯，为中国规模最大的古代石窟群之一，与敦煌莫高窟、洛阳龙门石窟和天水麦积山石窟并称为中国四大石窟艺术宝库。</p>
+                    </a>
+                    <a href="javascript:getChart('pie')" class="list-group-item ">
+                        <h4 class="list-group-item-heading">XXXX统计图</h4>
+                        <p class="list-group-item-text">云冈石窟位于中国北部山西省大同市西郊17公里处的武周山南麓，石窟依山开凿，东西绵延1公里。存有主要洞窟45个，大小窟龛252个，石雕造像51000余躯，为中国规模最大的古代石窟群之一，与敦煌莫高窟、洛阳龙门石窟和天水麦积山石窟并称为中国四大石窟艺术宝库。</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+</div>
+</body>
+<script type="text/javascript" src="../main/js/map.js"></script>
+<script type="text/javascript" src="../main/js/slidereveal.js"></script>
+<script type="text/javascript" src="../main/js/popup.js"></script>
+
+
+
+</html>
